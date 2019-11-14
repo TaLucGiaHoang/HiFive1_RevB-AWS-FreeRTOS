@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="fesdk.wizard.debug-launch-type" value="J-Link"/>
+	<item key="fpga_pref" value="false"/>
+	<item key="fesdk.wizard.create-debug-launch" value="true"/>
+	<item key="fesdk.wizard.program" value="cflush"/>
+	<item key="fesdk.wizard.board.match" value=""/>
+	<item key="jlink_pref" value="false"/>
+	<item key="fesdk.wizard.debug-launch-type.user.choice" value="J-Link"/>
+	<item key="openocd_pref" value="false"/>
+	<item key="board_pref" value="false"/>
+	<item key="fesdk.wizard.board" value="sifive-hifive1-revb"/>
+	<item key="qemu_pref" value="false"/>
+	<item key="fesdk.wizard.sdk.instance" value="E:\8.AWS-FreeRTOS-HiFive1\FreedomStudio-2019-08-1-win64\SiFive\freedom-e-sdk-v201908"/>
+	<item key="fesdk.wizard.last.sdk.instance" value="E:\8.AWS-FreeRTOS-HiFive1\FreedomStudio-2019-08-1-win64\SiFive\freedom-e-sdk-v201908"/>
+</section>

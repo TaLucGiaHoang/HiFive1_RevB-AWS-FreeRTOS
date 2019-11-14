@@ -1,0 +1,47 @@
+/* Copyright 2019 SiFive, Inc */
+/* SPDX-License-Identifier: Apache-2.0 */
+
+#include <stdio.h>
+#include <metal/led.h>
+#include <metal/gpio.h>
+#include <metal/timer.h>
+#include <metal/spi.h>
+
+#define ESP_CS	0
+void delay(int number_of_seconds) //not actually number of seconds
+{
+    int milli_seconds = 1000 * number_of_seconds;
+    clock_t start_time = clock();
+    while (clock() < start_time + milli_seconds);
+}
+
+int main()
+{
+	struct metal_gpio* gpio1;
+	struct metal_spi *spi;
+
+	printf("Start Programe\n");
+	gpio1 = metal_gpio_get_device(ESP_CS);
+	spi = metal_spi_get_device(1);
+	if(spi == NULL)
+	{
+		printf("Failed to get spi device\n");
+		return 1;
+	}
+	else
+	{
+		printf("success to get spi device\n");
+	}
+
+
+	metal_gpio_enable_output(gpio1,ESP_CS);
+	metal_gpio_set_pin(gpio1, ESP_CS, 1);
+	while(1)
+	{
+		metal_gpio_set_pin(gpio1, ESP_CS, 1);
+		delay(10000);
+		metal_gpio_set_pin(gpio1, ESP_CS, 0);
+		delay(10000);
+	}
+
+}

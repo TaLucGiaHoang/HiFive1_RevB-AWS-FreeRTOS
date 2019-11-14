@@ -1,0 +1,14 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-example-itim,org.eclipse.launchbar.core.descriptorType.default\:Demonstration,org.eclipse.launchbar.core.descriptorType.default\:software-interrupt.elf,org.eclipse.launchbar.core.descriptorType.default\:local-interrupt.elf,org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-local-interrupt,org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-software-interrupt,org.eclipse.launchbar.core.descriptorType.default\:example-spi.elf,org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-example-spi,org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-hello debug,org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-example-spi-1_2,org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-example-rtos-wifi debug,org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-example-freertos-spi,org.eclipse.launchbar.core.descriptorType.default\:RTOSDemo Debug
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:Demonstration/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:Demonstration/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:RTOSDemo\ Debug/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:RTOSDemo/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:hello.elf/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:local-interrupt.elf/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-example-spi/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:sifive-hifive1-revb-hello\ debug/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:software-interrupt.elf/activeLaunchMode=debug

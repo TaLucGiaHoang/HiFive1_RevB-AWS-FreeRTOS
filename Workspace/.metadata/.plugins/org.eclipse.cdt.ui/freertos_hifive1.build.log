@@ -1,0 +1,7 @@
+10:21:16 **** Incremental Build of configuration Debug for project freertos_hifive1 ****
+make -j4 all CONFIGURATION=Debug 
+make: *** No rule to make target 'Source/portable/oWatcom/16BitDOS/common/portcomn.o', needed by 'freertos_hifive1'.  Stop.
+"make -j4 all CONFIGURATION=Debug" terminated with exit code 2. Build might be incomplete.
+
+10:21:18 Build Failed. 1 errors, 0 warnings. (took 2s.60ms)
+

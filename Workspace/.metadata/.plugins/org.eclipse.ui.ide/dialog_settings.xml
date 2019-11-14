@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="com.sifive.gnumcueclipse.debug.gdbjtag.jlink.feature:4.3.4.201909252011"/>
+		<item value="com.sifive.gnumcueclipse.debug.gdbjtag.openocd.feature:4.3.3.201909252011"/>
+		<item value="com.sifive.gnumcueclipse.debug.gdbjtag.qemu.feature:3.3.3.201909252011"/>
+		<item value="org.eclipse.cdt.build.crossgcc:9.8.0.201903011325"/>
+		<item value="org.eclipse.cdt.gdb:9.8.0.201903011325"/>
+		<item value="org.eclipse.cdt.launch.remote:9.8.0.201903011325"/>
+		<item value="org.eclipse.cdt:9.8.0.201906071757"/>
+		<item value="org.eclipse.dltk.core:5.11.0.201811220629"/>
+		<item value="org.eclipse.dltk.tcl:5.11.0.201811220629"/>
+		<item value="org.eclipse.egit:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.emf.common:2.16.0.v20190528-0845"/>
+		<item value="org.eclipse.emf.ecore:2.18.0.v20190528-0845"/>
+		<item value="org.eclipse.epp.mpc:1.7.7.v20190521-1752"/>
+		<item value="org.eclipse.help:2.2.600.v20190605-1800"/>
+		<item value="org.eclipse.jgit.ssh.apache:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.jgit:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.mylyn.commons.identity:1.17.0.v20180628-1730"/>
+		<item value="org.eclipse.mylyn.commons.notifications:1.17.0.v20190115-0848"/>
+		<item value="org.eclipse.mylyn.commons.repositories:1.17.0.v20180628-1730"/>
+		<item value="org.eclipse.mylyn.commons:3.25.0.v20190131-2250"/>
+		<item value="org.eclipse.mylyn.discovery:3.25.0.v20190131-2250"/>
+		<item value="org.eclipse.mylyn.monitor:3.25.0.v20180628-1730"/>
+		<item value="org.eclipse.mylyn_feature:3.25.0.v20190128-2356"/>
+		<item value="org.eclipse.platform:4.12.0.v20190605-1801"/>
+		<item value="org.eclipse.rcp:4.12.0.v20190605-1801"/>
+		<item value="org.eclipse.rse.core:4.5.100.201904091701"/>
+		<item value="org.eclipse.rse.dstore:4.5.100.201904091701"/>
+		<item value="org.eclipse.rse.ftp:4.5.100.201904091701"/>
+		<item value="org.eclipse.rse.local:4.5.100.201904091701"/>
+		<item value="org.eclipse.rse.ssh:4.5.100.201904091701"/>
+		<item value="org.eclipse.rse.telnet:4.5.100.201904091701"/>
+		<item value="org.eclipse.rse:4.5.100.201904091701"/>
+		<item value="org.eclipse.tm.terminal.control.feature:4.5.100.201904091701"/>
+		<item value="org.eclipse.tm.terminal.feature:4.5.100.201904091701"/>
+		<item value="org.eclipse.tm.terminal.view.feature:4.5.100.201904091701"/>
+		<item value="org.eclipse.userstorage:1.2.0.v20190308-0433"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="E:\8.AWS-FreeRTOS-HiFive1\Workspace"/>
+			<item value="E:\8.AWS-FreeRTOS-HiFive1\freertos-code\FreeRTOS"/>
+			<item value="E:\8.AWS-FreeRTOS-HiFive1\freertos-code\FreeRTOS\Demo\RISC-V_RV32_SiFive_HiFive1_FreedomStudio"/>
+			<item value="E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Demo\RISC-V_RV32_SiFive_HiFive1_FreedomStudio"/>
+			<item value="E:\8.AWS-FreeRTOS-HiFive1\Workspace\freertos-hifive1\Demo\RISC-V_RV32_SiFive_HiFive1_FreedomStudio"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.ui.wizards.new.project"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.cdt.ui.newCWizards"/>
+			<item value="org.eclipse.dltk.sh.category"/>
+		</list>
+	</section>
+	<section name="BasicNewProjectResourceWizard">
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="657"/>
+		<item key="DIALOG_Y_ORIGIN" value="341"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+</section>

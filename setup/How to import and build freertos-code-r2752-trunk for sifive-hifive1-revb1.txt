@@ -1,0 +1,29 @@
+﻿How to build the RTOS demo application
+ 
+(Refer to https://freertos.org/RTOS-RISC-V-FreedomStudio-QMEU.html)
+
+1. Download FreeRTOS Source + Demo on https://sourceforge.net/p/freertos/code/HEAD/tree/trunk/
+- The package is : freertos-code-r2752-trunk.zip
+
+2. Create new folder named 'Workspace'
+
+3. Extract freertos-code-r2752-trunk.zip to Workspace
+3.1 Delete others demo and keep only RISC-V_RV32_SiFive_HiFive1_FreedomStudio demo if not use
+
+4. Download and extract FreedomStudio-2019-08-1-win64.zip (Freedom Studio:  https://www.sifive.com/boards )
+  - Open FreedomStudio: Import > Existing Projects into Workspace >
+  - In the Import Projects dialog box, navigate to and select the freertos-code-r2752-trunk/FreeRTOS/Demo/RISC-V_RV32_SiFive_HiFive1_FreedomStudio directory, and ensure the ‘copy projects into workspace’ check box is not checked. 
+
+
+4. In the ‘Projects’ window of the Import Projects dialog box, select the RTOSDemo project, and click finish. 
+
+5. Select “Build all” from the Freedom Studio ‘Project’ menu. The project should build without any errors or warnings, and create a file called RTOSDemo.elf. 
+
+Debug/Run Demo Application
+1. Right click RTOSDemo in Project Explorer
+Select Debug As > Debug configurations ...
+2. Add demo to debug configurations
+Select Sifive GDB SEGGER J-Link Debugging > New Configuration
+ - Name: RTOSDemo Debug
+ - Project RTOSDemo
+ - C/C++ Application: Debug\RTOSDemo

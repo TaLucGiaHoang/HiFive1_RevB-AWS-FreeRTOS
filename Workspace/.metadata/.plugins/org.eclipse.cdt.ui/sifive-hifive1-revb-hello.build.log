@@ -1,0 +1,13 @@
+12:46:40 **** Clean-only build of configuration debug for project sifive-hifive1-revb-hello ****
+make clean CONFIGURATION=debug 
+/usr/bin/make -C /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-hello/src PORT_DIR= clean
+make[1]: Entering directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-hello/src'
+rm -f hello hello.hex
+make[1]: Leaving directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-hello/src'
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-hello/src/debug
+rm -rf scripts/elf2hex/build scripts/elf2hex/install
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-hello/bsp/install
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-hello/bsp/build/debug
+
+12:46:41 Build Finished. 0 errors, 0 warnings. (took 602ms)
+

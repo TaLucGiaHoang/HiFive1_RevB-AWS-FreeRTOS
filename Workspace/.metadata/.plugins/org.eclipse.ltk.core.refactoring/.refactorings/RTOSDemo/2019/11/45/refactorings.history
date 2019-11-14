@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;RTOSDemo/hello.c&apos; to &apos;esp32_AT.c&apos;" description="Rename resource &apos;hello.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="hello.c" name="esp32_AT.c" stamp="1572921476164" updateReferences="true"/>
+</session>

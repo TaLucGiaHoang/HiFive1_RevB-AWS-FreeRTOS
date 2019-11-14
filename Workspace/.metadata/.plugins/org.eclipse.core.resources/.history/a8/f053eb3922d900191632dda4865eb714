@@ -1,0 +1,33 @@
+/* Copyright 2019 SiFive, Inc */
+/* SPDX-License-Identifier: Apache-2.0 */
+
+#include <stdio.h>
+#include <metal/led.h>
+#include <metal/gpio.h>
+
+void delay(int time)
+{
+	int i = 0;
+	for(i = 0; i < time; i++)
+	{
+//		asm(NULL);
+	}
+}
+
+int main()
+{
+	struct metal_gpio* gpio1;
+
+	printf("Start Programe\n");
+	gpio1 = metal_gpio_get_device(9);
+	metal_gpio_enable_output(gpio1, 9);
+	metal_gpio_set_pin(gpio1, 9, 1);
+//	while(1)
+//	{
+//		metal_gpio_set_pin(gpio1, 9, 1);
+//		delay(1000);
+//		metal_gpio_set_pin(gpio1, 9, 0);
+//		delay(1000);
+//	}
+
+}

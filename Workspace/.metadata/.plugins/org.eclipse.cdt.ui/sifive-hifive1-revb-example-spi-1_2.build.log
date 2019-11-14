@@ -1,0 +1,11 @@
+16:35:14 **** Incremental Build of configuration debug for project sifive-hifive1-revb-example-spi-1_2 ****
+make all CONFIGURATION=debug 
+Building file: ../src/example-spi.c
+Invoking: SiFive GNU C Compiler
+gcc -O2 -g -Wall -c -fmessage-length=0 -MMD -MP -MF"src/example-spi.d" -MT"src/example-spi.o" -o "src/example-spi.o" "../src/example-spi.c"
+/bin/sh: gcc: command not found
+make: *** [src/subdir.mk:20: src/example-spi.o] Error 127
+"make all CONFIGURATION=debug" terminated with exit code 2. Build might be incomplete.
+
+16:35:15 Build Failed. 2 errors, 0 warnings. (took 436ms)
+

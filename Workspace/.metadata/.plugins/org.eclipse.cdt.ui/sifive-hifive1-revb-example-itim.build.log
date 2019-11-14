@@ -1,0 +1,13 @@
+09:25:32 **** Clean-only build of configuration debug for project sifive-hifive1-revb-example-itim ****
+make clean CONFIGURATION=debug 
+/usr/bin/make -C /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-itim/src PORT_DIR= clean
+make[1]: Entering directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-itim/src'
+rm -f example-itim example-itim.hex
+make[1]: Leaving directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-itim/src'
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-itim/src/debug
+rm -rf scripts/elf2hex/build scripts/elf2hex/install
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-itim/bsp/install
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-itim/bsp/build/debug
+
+09:25:34 Build Finished. 0 errors, 0 warnings. (took 1s.990ms)
+

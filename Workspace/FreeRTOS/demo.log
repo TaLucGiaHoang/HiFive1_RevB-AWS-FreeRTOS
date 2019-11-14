@@ -1,0 +1,60 @@
+Bench Clock Reset Complete
+
+ATE0-->ATE0
+OK
+AT+BLEINIT=0-->OK
+AT+CWMODE=0-->OK
+
+Start prvSpiRxTask
+Start prvESP32Task
+AT+RST
+esp32>
+ready
+ATE0
+esp32> ATE0
+esp32>
+OK
+AT
+esp32>
+OK
+AT+CWMODE=1
+esp32>
+OK
+AT+CWJAP="SHCVN02","khongduoc"
+esp32> WIFI CONNECTED
+esp32> WIFI GOT IP
+esp32>
+OK
+AT+CIPSTART="TCP","hifivedemo.s3-ap-southeast-1.amazonaws.com",80,2
+esp32> CONNECT
+esp32>
+OK
+AT+CIPSEND=76
+esp32>
+OK
+esp32>
+>GET /data.txt HTTP/1.1
+Host: hifivedemo.s3-ap-southeast-1.amazonaws.com
+
+esp32>
+Recv 76 bytes
+esp32>
+SEND OK
+esp32>
++IPD,355:HTTP/1.1 200 OK
+x-amz-id-2: qo7c7+LuSCI5y5fqASDRhddyKUsbPzWwIVrCrsCKSTKMjR3v5g+Wv5ohhYqrfHpNmnBhbVKKkL8=
+x-amz-request-id: 80F6262A6B2E2BFD
+Date: Mon, 11 Nov 2019 06:26:25 GMT
+Last-Modified: Mon, 11 Nov 2019 04:55:35 GMT
+ETag: "07dcfee4ed3a5b6537b7055e69608f31"
+Accept-Ranges: bytes
+Content-Type: text/plain
+Content-Length: 4
+Server: AmazonS3
+
+esp32>
++IPD,4:LEDBAT+CIPCLOSE
+esp32> CLOSED
+LED Blue on
+esp32>
+OK

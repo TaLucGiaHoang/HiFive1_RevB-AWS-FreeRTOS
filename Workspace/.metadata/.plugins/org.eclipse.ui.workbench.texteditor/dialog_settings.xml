@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="read_xQueueRx_last"/>
+		<item key="casesensitive" value="true"/>
+		<item key="incremental" value="false"/>
+		<item key="wrap" value="true"/>
+		<item key="wholeword" value="true"/>
+		<list key="findhistory">
+			<item value="read_xQueueRx_last"/>
+			<item value="BLUE"/>
+			<item value="gpio1"/>
+			<item value="pxGreenLED"/>
+			<item value="led_ctrl"/>
+			<item value="iled"/>
+			<item value="ESP_AT_BUFFER_SIZE"/>
+			<item value="init_spi1"/>
+			<item value="WF_INT"/>
+			<item value="process_message"/>
+			<item value="delay_s"/>
+			<item value="drv_esp32_recv"/>
+			<item value="QueueRx cleare"/>
+			<item value="debug_puts"/>
+			<item value="prvESP32_task"/>
+		</list>
+		<list key="replacehistory">
+			<item value="prvESP32Task"/>
+			<item value="drv_esp32_recv"/>
+			<item value="drv_esp32_send"/>
+			<item value="gpio0_input_en"/>
+			<item value="gpio0_input_val"/>
+			<item value="driver_spi1_transfer"/>
+			<item value="esp32_recv"/>
+			<item value="esp32_send"/>
+			<item value="driver_spi0_transfer("/>
+			<item value="recv_data"/>
+			<item value="esp32"/>
+			<item value="prvESP32_task"/>
+			<item value="(gpio_input_val &amp; (0x1&lt;&lt;WF_INT))"/>
+			<item value="METAL_SIFIVE_SPI1"/>
+			<item value="METAL_SIFIVE_SPI1_SCKDIV"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_WIDTH" value="411"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_X_ORIGIN" value="1300"/>
+		<item key="DIALOG_Y_ORIGIN" value="541"/>
+	</section>
+</section>

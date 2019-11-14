@@ -1,0 +1,11 @@
+16:37:07 **** Incremental Build of configuration debug for project sifive-hifive1-revb-example-rtos-wifi ****
+make all CONFIGURATION=debug 
+Building file: ../freedom-metal/src/drivers/fixed-clock.c
+Invoking: SiFive GNU C Compiler
+gcc -O2 -g -Wall -c -fmessage-length=0 -MMD -MP -MF"freedom-metal/src/drivers/fixed-clock.d" -MT"freedom-metal/src/drivers/fixed-clock.o" -o "freedom-metal/src/drivers/fixed-clock.o" "../freedom-metal/src/drivers/fixed-clock.c"
+/bin/sh: gcc: command not found
+make: *** [freedom-metal/src/drivers/subdir.mk:95: freedom-metal/src/drivers/fixed-clock.o] Error 127
+"make all CONFIGURATION=debug" terminated with exit code 2. Build might be incomplete.
+
+16:37:07 Build Failed. 2 errors, 0 warnings. (took 657ms)
+

@@ -1,0 +1,13 @@
+09:31:05 **** Clean-only build of configuration debug for project Demonstration ****
+make clean CONFIGURATION=debug 
+/usr/bin/make -C /e/8.AWS-FreeRTOS-HiFive1/Workspace/Demonstration/src PORT_DIR= clean
+make[1]: Entering directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/Demonstration/src'
+rm -f example-spi example-spi.hex
+make[1]: Leaving directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/Demonstration/src'
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/Demonstration/src/debug
+rm -rf scripts/elf2hex/build scripts/elf2hex/install
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/Demonstration/bsp/install/lib/debug
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/Demonstration/bsp/build/debug
+
+09:31:06 Build Finished. 0 errors, 0 warnings. (took 647ms)
+

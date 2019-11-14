@@ -1,0 +1,13 @@
+09:26:01 **** Clean-only build of configuration debug for project sifive-hifive1-revb-local-interrupt ****
+make clean CONFIGURATION=debug 
+/usr/bin/make -C /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-local-interrupt/src PORT_DIR= clean
+make[1]: Entering directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-local-interrupt/src'
+rm -f local-interrupt local-interrupt.hex
+make[1]: Leaving directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-local-interrupt/src'
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-local-interrupt/src/debug
+rm -rf scripts/elf2hex/build scripts/elf2hex/install
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-local-interrupt/bsp/install
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-local-interrupt/bsp/build/debug
+
+09:26:02 Build Finished. 0 errors, 0 warnings. (took 872ms)
+

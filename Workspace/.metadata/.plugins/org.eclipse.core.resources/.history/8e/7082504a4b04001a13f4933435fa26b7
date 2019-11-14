@@ -1,0 +1,33 @@
+/*
+ * esp32_AT.h
+ *
+ *  Created on: Nov 4, 2019
+ *      Author: HoangSHC
+ */
+
+#ifndef ESP32_AT_H_
+#define ESP32_AT_H_
+
+#define WIFI_SSID "SHCVN02"
+#define WIFI_PASS "khongduoc"
+
+
+//void esp32_init(unsigned int baudrate);
+void esp32_create_tasks(void);
+//void esp32_at_test(void);
+void esp32_reset_module(void);
+void esp32_echo_off(void);
+void esp32_wifi_conn(const char* ssid, const char* pssid);
+//void esp32_ap_query_response(void);
+//void esp32_ip_status(void);
+//void esp32_ip_ssl_config(void);
+//void esp32_ip_ssl_connect(const char* address, const char* port);
+//void esp32_ip_set_time_domain(const char* timezone, const char* sntp_server);
+//void esp32_https_post(const char *jsondata);
+//void esp32_https_get(void);
+//void esp32_test_post_get(void);
+void esp32_send_cmd(const char* cmd, int wait_ms);
+void esp32_recv(char* msg, int len);
+
+
+#endif /* ESP32_AT_H_ */

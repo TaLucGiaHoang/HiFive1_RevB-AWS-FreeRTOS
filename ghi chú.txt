@@ -1,0 +1,83 @@
+Sifive HiFive 1 Rev B01 board
+Hardware component:
+- FE310-G002 (main chip on HiFive1 board)
+- ESP32-SOLO-1 (wifi module on HiFive1 board)
+
+COM15 115200 : HiFive print log
+COM16 115200 : ESP32-SOLO-1 log
+
+
+=================================================
+Saleae Logic 1.2.18 - Hardware debug connection
+Speed (sample rate): 5MS/s - 1.25MS/s
+
+                        | SPI_MOSI | SPI_MISO | SPI_SCK  | SPI_CS2   | WF_INT   |
+---------------------------------------------------------------------------------
+FE310                   |  IO3     | IO4      |  IO5     | IO9       |  IO10    |
+ESP32                   |  IO13    | IO12     |  IO14    | IO15      |  IO2     |
+Arduino 10-pin jumper   |  11      | 12       |  13      | 15        |  16      |
+
+=================================================
+
+
+(https://forums.sifive.com/t/hifive-1-rev-b-interfacing-with-esp32-solo-1/2652)
+ESP32 is connected to FE310 via SPI1, use SPI1 on FE310 to send AT commands
+ESP32 writes to UART connected to the JLink chip
+
+============
+=FE310-G002:
+============
+SPI: refer to fe310-g002-manual-v19p05.pdf
+
+Instance | Flash Controller| Address    | cs_width | div_width
+--------------------------------------------------------------
+QSPI0    |  Y              | 0x10014000 | 1        |  12
+SPI1     |  N              | 0x10024000 | 4        |  12 (wired to esp32-solo)
+SPI2     |  N              | 0x10034000 | 1        |  12
+ 
+ 
+Sample code:
+Directory: FreedomStudio-2019-08-1-win64\SiFive\freedom-e-sdk-v201908\software
+
+
+=============
+=ESP32-SOLO-1
+=============
+AT-SPI interface on ESP32-SOLO-1
+================================================================
+reference info from at_hspi_task.c (Download from:  https://github.com/espressif/esp-at )
+https://github.com/espressif/esp-at/blob/master/main/interface/hspi/at_hspi_task.c
+
+
+/*
+ This example uses one extra pin: GPIO_HANDSHAKE is used as a handshake pin. The slave makes this pin high as soon as it is
+ ready to receive/send data. This code connects this line to a GPIO interrupt which gives the rdySem semaphore. The main
+ task waits for this semaphore to be given before queueing a transmission.
+
+ Every AT data transmission need three steps. The first step wait Master send the flag to indicate read or write. The second step is
+ to transfer the length of the data. The last step transfer the data.
+ */
+char len_buf[4];
+char at_flag_buf[4];
+char recvbuf[3*1024] = "";
+char sendbuf[3*1024] = "";
+
+at_flag_buf[0] == 1  //send (at_flag_buf: {0x1, 0x0, 0x0, 0x0})
+//Send data length. Slice the length if it over than 127
+len_buf[0] = send_len & 127;  // (len_buf: { l_byte, h_byte, 0x0, 0xB})
+len_buf[1] = send_len >> 7;
+len_buf[3] = 'B'; // check info
+/* Send data */
+t.tx_buffer = sendbuf;        // sendbuf
+t.rx_buffer = NULL;
+
+
+at_flag_buf[0] == 2  //recv(at_flag_buf: {0x2, 0x0, 0x0, 0x0})
+/* recv master data len  */
+if(len_buf[3] == 'A') // (len_buf: { l_byte, h_byte, 0x0, 0xA})
+    recv_len = (len_buf[1] << 7) + len_buf[0];
+/* recv master data */
+t.tx_buffer = NULL;
+t.rx_buffer = recvbuf;
+
+===============================================================

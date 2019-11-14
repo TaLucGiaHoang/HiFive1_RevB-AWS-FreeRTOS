@@ -1,0 +1,39 @@
+10:29:23 **** Build of configuration Debug for project sifive-hifive1-revb-RTOSDemo ****
+make -j4 all 
+Building file: E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/TaskNotify.c
+Building file: E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/TimerDemo.c
+Invoking: Cross GCC Compiler
+Building file: E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/blocktim.c
+riscv64-unknown-elf-gcc.exe -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\include" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo" -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\portable\GCC\RISC-V" -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\include" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo\freedom-metal" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo\bsp\install\include" -O0 -g3 -Wall -Wextra -c -fmessage-length=0 -march=rv32imac -mabi=ilp32 -mcmodel=medlow -ffunction-sections -fdata-sections --specs=nano.specs -MMD -MP -MF"full_demo/Common_Demo_Tasks/TaskNotify.d" -MT"full_demo/Common_Demo_Tasks/TaskNotify.o" -o "full_demo/Common_Demo_Tasks/TaskNotify.o" "E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/TaskNotify.c"
+Invoking: Cross GCC Compiler
+riscv64-unknown-elf-gcc.exe -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\include" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo" -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\portable\GCC\RISC-V" -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\include" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo\freedom-metal" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo\bsp\install\include" -O0 -g3 -Wall -Wextra -c -fmessage-length=0 -march=rv32imac -mabi=ilp32 -mcmodel=medlow -ffunction-sections -fdata-sections --specs=nano.specs -MMD -MP -MF"full_demo/Common_Demo_Tasks/TimerDemo.d" -MT"full_demo/Common_Demo_Tasks/TimerDemo.o" -o "full_demo/Common_Demo_Tasks/TimerDemo.o" "E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/TimerDemo.c"
+Invoking: Cross GCC Compiler
+riscv64-unknown-elf-gcc.exe -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\include" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo" -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\portable\GCC\RISC-V" -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\include" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo\freedom-metal" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo\bsp\install\include" -O0 -g3 -Wall -Wextra -c -fmessage-length=0 -march=rv32imac -mabi=ilp32 -mcmodel=medlow -ffunction-sections -fdata-sections --specs=nano.specs -MMD -MP -MF"full_demo/Common_Demo_Tasks/blocktim.d" -MT"full_demo/Common_Demo_Tasks/blocktim.o" -o "full_demo/Common_Demo_Tasks/blocktim.o" "E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/blocktim.c"
+Building file: E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/dynamic.c
+Invoking: Cross GCC Compiler
+riscv64-unknown-elf-gcc.exe -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\include" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo" -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\portable\GCC\RISC-V" -I"E:\8.AWS-FreeRTOS-HiFive1\freertos-code-r2752-trunk\FreeRTOS\Source\include" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo\freedom-metal" -I"E:\8.AWS-FreeRTOS-HiFive1\Workspace\sifive-hifive1-revb-RTOSDemo\bsp\install\include" -O0 -g3 -Wall -Wextra -c -fmessage-length=0 -march=rv32imac -mabi=ilp32 -mcmodel=medlow -ffunction-sections -fdata-sections --specs=nano.specs -MMD -MP -MF"full_demo/Common_Demo_Tasks/dynamic.d" -MT"full_demo/Common_Demo_Tasks/dynamic.o" -o "full_demo/Common_Demo_Tasks/dynamic.o" "E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/dynamic.c"
+E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/blocktim.c:40:10: fatal error: blocktim.h: No such file or directory
+ #include "blocktim.h"
+          ^~~~~~~~~~~~
+E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/TaskNotify.c:42:10: fatal error: TaskNotify.h: No such file or directory
+ #include "TaskNotify.h"
+          ^~~~~~~~~~~~~~
+E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/TimerDemo.c:43:10: fatal error: TimerDemo.h: No such file or directory
+ #include "TimerDemo.h"
+          ^~~~~~~~~~~~~
+compilation terminated.
+compilation terminated.
+compilation terminated.
+make: *** [full_demo/Common_Demo_Tasks/subdir.mk:29: full_demo/Common_Demo_Tasks/TaskNotify.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [full_demo/Common_Demo_Tasks/subdir.mk:36: full_demo/Common_Demo_Tasks/TimerDemo.o] Error 1
+make: *** [full_demo/Common_Demo_Tasks/subdir.mk:43: full_demo/Common_Demo_Tasks/blocktim.o] Error 1
+E:/8.AWS-FreeRTOS-HiFive1/freertos-code-r2752-trunk/FreeRTOS/Demo/Common/Minimal/dynamic.c:93:10: fatal error: dynamic.h: No such file or directory
+ #include "dynamic.h"
+          ^~~~~~~~~~~
+compilation terminated.
+make: *** [full_demo/Common_Demo_Tasks/subdir.mk:50: full_demo/Common_Demo_Tasks/dynamic.o] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+
+10:29:24 Build Failed. 9 errors, 0 warnings. (took 1s.750ms)
+

@@ -1,0 +1,61 @@
+=====Hercules input=================
+AT$0D$0A
+AT+CWMODE=1$0D$0A
+AT+CWJAP="SHCVN02","khongduoc"$0D$0A
+AT+CIPSTART="TCP","hifivedemo.s3-ap-southeast-1.amazonaws.com",80,2$0D$0A
+AT+CIPSEND=76$0D$0A
+GET /data.txt HTTP/1.1$0D$0AHost: hifivedemo.s3-ap-southeast-1.amazonaws.com$0D$0A$0D$0A
+AT+CIPCLOSE$0D$0A
+====================================
+
+==========C_Language==========
+"ATE0\r\n"
+"AT\r\n"
+"AT+CWMODE=1\r\n"
+"AT+CWJAP=\"SHCVN02\",\"khongduoc\"\r\n"
+"AT+CIPSTART=\"TCP\",\"hifivedemo.s3-ap-southeast-1.amazonaws.com\",80,2\r\n"
+"AT+CIPSEND=76\r\n"
+"GET /data.txt HTTP/1.1\r\nHost: hifivedemo.s3-ap-southeast-1.amazonaws.com\r\n\r\n"
+"AT+CIPCLOSE\r\n"
+==============================
+
+
+=========hercules_log========
+ATE0{0D}{0A}ATE0{0D}{0A}{0D}{0A}OK{0D}{0A}
+AT+CWMODE=1{0D}{0A}{0D}{0A}OK{0D}{0A}
+AT+CWJAP="SHCVN02","khongduoc"{0D}{0A}WIFI CONNECTED{0D}{0A}WIFI GOT IP{0D}{0A}{0D}{0A}OK{0D}{0A}
+AT+CIPSTART="TCP","hifivedemo.s3-ap-southeast-1.amazonaws.com",80,2{0D}{0A}
+CONNECT{0D}{0A}
+{0D}{0A}
+OK{0D}{0A}
+
+AT+CIPSEND=76{0D}{0A}
+{0D}{0A}
+OK{0D}{0A}
+{0D}{0A}
+>GET /data.txt HTTP/1.1{0D}{0A}
+Host: hifivedemo.s3-ap-southeast-1.amazonaws.com{0D}{0A}
+{0D}{0A}
+{0D}{0A}
+Recv 76 bytes{0D}{0A}
+{0D}{0A}
+SEND OK{0D}{0A}
+{0D}{0A}
++IPD,373:HTTP/1.1 200 OK{0D}{0A}
+x-amz-id-2: lMcNS96HCQFK9yn30D6WXdDklwhn1SQHBTe9DZ05hk0Zo+ArjipdEB5dGqPnmn62IGGcBt8nv/E={0D}{0A}
+x-amz-request-id: 5C53F20A81A7622B{0D}{0A}
+Date: Thu, 07 Nov 2019 06:46:35 GMT{0D}{0A}
+Last-Modified: Wed, 16 Oct 2019 03:22:34 GMT{0D}{0A}
+ETag: "07dcfee4ed3a5b6537b7055e69608f31"{0D}{0A}
+Accept-Ranges: bytes{0D}{0A}
+Content-Type: application/octet-stream{0D}{0A}
+Content-Length: 4{0D}{0A}
+Server: AmazonS3{0D}{0A}
+{0D}{0A}
+LEDB
+CLOSED{0D}{0A}
+=============================
+
+
+
+

@@ -1,0 +1,13 @@
+12:46:18 **** Clean-only build of configuration debug for project sifive-hifive1-revb-example-freertos-spi ****
+make clean CONFIGURATION=debug 
+/usr/bin/make -C /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-freertos-spi/src PORT_DIR= clean
+make[1]: Entering directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-freertos-spi/src'
+rm -f example-spi example-spi.hex
+make[1]: Leaving directory '/e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-freertos-spi/src'
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-freertos-spi/src/debug
+rm -rf scripts/elf2hex/build scripts/elf2hex/install
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-freertos-spi/bsp/install/lib/debug
+rm -rf /e/8.AWS-FreeRTOS-HiFive1/Workspace/sifive-hifive1-revb-example-freertos-spi/bsp/build/debug
+
+12:46:19 Build Finished. 0 errors, 0 warnings. (took 755ms)
+

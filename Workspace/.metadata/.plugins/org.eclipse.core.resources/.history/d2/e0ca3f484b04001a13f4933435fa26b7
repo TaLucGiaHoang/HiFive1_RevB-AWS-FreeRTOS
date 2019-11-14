@@ -1,0 +1,343 @@
+#include <string.h>
+#include <time.h>
+#include <metal/led.h>
+#include <metal/gpio.h>
+#include <metal/timer.h>
+#include <metal/spi.h>
+#include <metal/clock.h>
+#include <metal/uart.h> // serial uart
+#include <metal/machine.h> // serial uart
+#include "debug_serial.h"
+#include "drv_spi1.h"
+#include "drv_esp32.h"
+
+/* Kernel includes. */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "timers.h"
+#include "semphr.h"
+
+#include "esp32_AT.h"
+/* FE310-G002 GPIO pin */
+#define ESP_CS	9
+#define BLUE	21
+#define GREEN	19
+#define RED		22
+#define LED_ON   0
+#define LED_OFF  1
+
+//typedef struct {
+//    volatile uint32_t sckdiv;           /* 0x00 Serial clock divisor register */
+//    volatile uint32_t sckmode;          /* 0x04 Serial clock mode register */
+//    volatile uint32_t reserved0[2];     /* 0x08 ~ 0x0c Reserved  */
+//    volatile uint32_t csid;             /* 0x10 Chip select ID register */
+//    volatile uint32_t csdef;            /* 0x14 Chip select default register */
+//    volatile uint32_t csmode;           /* 0x18 Chip select mode register */
+//    volatile uint32_t reserved1[3];     /* 0x1c ~ 0x24 Reserved  */
+//    volatile uint32_t delay0;           /* 0x28 Delay control 0 register */
+//    volatile uint32_t delay1;           /* 0x2c Delay control 1 register */
+//    volatile uint32_t reserved2[4];     /* 0x30 ~ 0x3c Reserved  */
+//    volatile uint32_t fmt;              /* 0x40 Frame format register */
+//    volatile uint32_t reserved3[1];     /* 0x44 Reserved  */
+//    volatile uint32_t txdata;           /* 0x48 Tx FIFO Data register */
+//    volatile uint32_t rxdata;           /* 0x4c Rx FIFO data register */
+//    volatile uint32_t txmark;           /* 0x50 Tx FIFO watermark register */
+//    volatile uint32_t rxmark;           /* 0x54 Rx FIFO watermark register */
+//    volatile uint32_t reserved4[2];     /* 0x58 ~ 0x5c Reserved  */
+//    volatile uint32_t fctrl;            /* 0x60 SPI flash interface control register */
+//    volatile uint32_t ffmt;             /* 0x64 SPI flash instruction format register */
+//    volatile uint32_t reserved5[2];     /* 0x68 ~ 0x6c Reserved  */
+//    volatile uint32_t ie;               /* 0x70 SPI interrupt enable register */
+//    volatile uint32_t ip;               /* 0x74 SPI interrupt pending register */
+//} SPI_RegDef;
+//#define SPI1_BASE               (volatile uint32_t*)(0x10024000)
+//#define DEV_SPI1              ((SPI_RegDef *)  SPI1_BASE)
+
+
+
+//struct metal_gpio* gpio1;
+//struct metal_spi *spi;
+
+char rx_buf[32];
+char cmd_len_buf[4];
+char rec_cmd[] = {0x01, 0x00, 0x00, 0x00};
+int16_t cmd_len;
+uint32_t temp;
+uint32_t timeout;
+
+
+#define delay_s(s)    vTaskDelay( ( TickType_t )(1000*s) / portTICK_PERIOD_MS )
+#define delay_ms(ms)    vTaskDelay( ( TickType_t )ms / portTICK_PERIOD_MS )
+
+
+enum {
+	MSG_AT = 0,
+	MSG_RESET,
+//	MSG_ECHO_OFF,
+//	MSG_WIFI_QUERY,
+	MSG_WIFI_CONNECT,
+//	MSG_IP_STATUS,
+//	MSG_IP_SSL_CONFIG,
+//	MSG_IP_SET_TIME_DOMAIN,
+//	MSG_IP_SSL_CONNECT,
+//	MSG_TEST_HTTPS_POST_SET,
+//	MSG_HTTPS_POST,
+//	MSG_HTTPS_GET,
+    MSG_SEND_STRING,
+	MSG_RECV_STRING,
+};
+
+
+static char messageReceive[ESP_AT_BUFFER_SIZE];
+static QueueHandle_t xQueueRx, xQueueTx;
+static SemaphoreHandle_t xSemaphore = NULL;
+struct ESP32_ST
+{
+    int id;
+    void *data;
+    int len;
+} s_esp32;
+
+static void prvESP32Task(void* pvParameters);
+static void prvSpiRxTask(void* pvParameters);
+static void wifi_conn(const char* ssid, const char* ssid_pass);
+
+// static void https_post(const char *jsondata);
+// static void https_get(void);
+
+static void queue_send_cmd(int id, void* data, int len);
+static int read_xQueueRx(char* s, int s_len);
+
+
+void esp32_create_tasks(void)
+{
+	xSemaphore = xSemaphoreCreateMutex();
+	if ( ( xSemaphore ) != NULL )
+	  xSemaphoreGive( ( xSemaphore ) );
+
+    xQueueRx = xQueueCreate( 1024, sizeof( char ) );
+    if( xQueueRx == NULL )
+    {
+        /* Queue was not created and must not be used. */
+        debug_puts("xQueueRx was not created\r\n");
+    }
+
+    xQueueTx = xQueueCreate( 2, sizeof( s_esp32 ) );
+    if( xQueueTx == NULL )
+    {
+        /* Queue was not created and must not be used. */
+    	debug_puts("xQueueTx was not created\r\n");
+    }
+
+    xTaskCreate(prvESP32Task, "prvESP32Task", 1024, NULL, 1, NULL);
+    xTaskCreate(prvSpiRxTask, "prvSpiRxTask", 512, NULL, 1, NULL);
+}
+
+
+static void prvSpiRxTask( void *pvParameters )
+{
+	/* Prevent the compiler warning about the unused parameter. */
+	( void ) pvParameters;
+	char c;
+	int i = 0;
+	char *s = messageReceive;
+	int len = 0;
+	int ret = 0;
+	memset(s, 0, sizeof(messageReceive));
+	xSemaphoreTake(xSemaphore, portMAX_DELAY);
+	debug_puts("Start ");debug_puts(__func__);debug_puts("\n");
+	xSemaphoreGive(xSemaphore);
+	for( ;; )
+	{
+
+		if( xQueueRx != 0 )
+		{
+			s = messageReceive;
+			s[0] = 0;
+			len = 0;
+			xSemaphoreTake(xSemaphore, portMAX_DELAY);
+			ret = drv_esp32_recv(s, &len);
+			xSemaphoreGive(xSemaphore);
+
+			if( ret != 0)
+			{
+				// recv error
+			}
+			else
+			{
+				if(len > 0) {
+					s[len] = 0;
+					debug_puts("esp32> ");  // DEBUG
+					debug_puts(s);  // DEBUG
+
+					// send to queue
+					while(*s) {
+						c = *(s);
+						if( xQueueSend( xQueueRx, ( void * ) &c, ( TickType_t )2000 ) != pdPASS )
+						{
+							/* Failed to post the message. */
+							debug_puts("xQueueRx is full --> clear\n");
+							read_xQueueRx(0,0); // clear queue after 2000 ticks
+							xQueueSend( xQueueRx, ( void * ) &c, ( TickType_t )0 ); // re-send queue
+						}
+						s++;
+					}
+				}
+			}
+
+			memset(s, 0, sizeof(messageReceive));
+			delay_ms(100); // sleep 100ms
+		}
+	}
+
+    vTaskDelete(NULL);
+    vAssertCalled();
+}
+
+static void prvESP32Task(void* pvParameters)
+{
+	/* Remove compiler warning about unused parameter. */
+	( void ) pvParameters;
+	struct ESP32_ST esp32;
+	xSemaphoreTake(xSemaphore, portMAX_DELAY);
+	debug_puts("Start ");debug_puts(__func__);debug_puts("\n");
+	xSemaphoreGive(xSemaphore);
+	for(;;)
+	{
+		if( xQueueTx != 0 )
+		{
+			if( xQueueReceive( xQueueTx, ( void * )&esp32 , ( TickType_t ) 100 ) != pdPASS )
+			{
+			    /* Failed to get the message. */
+			} else
+			{
+				xSemaphoreTake(xSemaphore, portMAX_DELAY);
+				int id = s_esp32.id;
+				switch (id)
+				{
+				case MSG_SEND_STRING:
+				{
+					char *data = (char*)esp32.data;
+					int len = esp32.len;
+					drv_esp32_send(data);
+					break;
+				}
+				case MSG_RECV_STRING:
+				{
+					char* msg = (char*)esp32.data;
+					int len = esp32.len;
+					int recv_len = 0;
+					recv_len = read_xQueueRx(msg, len);
+
+					break;
+				}
+				default:
+				{
+					break;
+				};
+				}
+				xSemaphoreGive(xSemaphore);
+			}
+		} else
+		{
+			debug_puts("xQueueTx was not created\n");
+		}
+
+	}
+
+    vTaskDelete(NULL);
+    vAssertCalled();
+}
+
+static void queue_send_cmd(int id, void* data, int len)
+{
+    s_esp32.id = id;
+    s_esp32.data = data;
+    s_esp32.len = len;
+    if( xQueueSend( xQueueTx, ( void * ) &s_esp32,( TickType_t ) portMAX_DELAY ) != pdPASS )
+    {
+      /* Failed to post the message */
+      // printf("%s: xQueueTx was full\r\n", __func__);
+    }
+}
+
+static int read_xQueueRx(char* s, int s_len)
+{
+	char c;
+	int i = 0;
+	do
+	{
+		if( xQueueReceive( xQueueRx, ( void * ) &c, ( TickType_t ) 0 ) != pdPASS )
+		{
+			break; // queue is empty
+		}
+
+		if(s)
+			s[i] = c;
+
+		if(s_len != 0)
+			if(i > s_len)
+				break;
+
+		i++;
+	}while(1);
+
+	return i;
+}
+
+static int read_xQueueRx_last(char* s, int s_len)
+{
+	char c;
+	int i = 0;
+	do
+	{
+		if( xQueueReceive( xQueueRx, ( void * ) &c, ( TickType_t ) 0 ) != pdPASS )
+		{
+			break; // queue is empty
+		}
+
+		if(s && (i >= s_len))
+			s[i-s_len] = c;
+
+		if(s_len != 0)
+			if(i > s_len)
+				break;
+
+		i++;
+	}while(1);
+
+	return i;
+}
+
+void esp32_send_cmd(const char* cmd, int wait_ms)
+{
+	queue_send_cmd( MSG_SEND_STRING, (void*)cmd, (int)strlen(cmd) );
+	delay_ms(wait_ms + 50);
+}
+
+void esp32_recv(char* msg, int len)
+{
+	queue_send_cmd( MSG_RECV_STRING, (void*)msg, len);
+	delay_ms(0 + 50);
+}
+
+void esp32_wifi_conn(const char* ssid, const char* pssid)
+{
+	esp32_send_cmd("AT+CWMODE=1\r\n", 100);
+//	esp32_send_cmd("AT+CWJAP=\"" WIFI_SSID "\",\"" WIFI_PASS "\"\r\n", 6000);
+	esp32_send_cmd("AT+CWJAP=\"", 0);
+	esp32_send_cmd(ssid, 0);
+	esp32_send_cmd("\",\"", 0);
+	esp32_send_cmd(pssid, 0);
+	esp32_send_cmd("\"\r\n", 6000);
+}
+
+void esp32_reset_module(void)
+{
+	esp32_send_cmd("AT+RST\r\n", 1000);  // reset ESP32-SOLO-1
+}
+
+void esp32_echo_off(void)
+{
+	esp32_send_cmd("ATE0\r\n", 1000);  // echo off
+}

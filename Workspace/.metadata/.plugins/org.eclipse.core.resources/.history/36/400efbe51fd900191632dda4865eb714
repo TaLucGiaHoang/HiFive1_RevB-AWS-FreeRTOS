@@ -1,0 +1,26 @@
+/* Copyright 2019 SiFive, Inc */
+/* SPDX-License-Identifier: Apache-2.0 */
+
+#include <stdio.h>
+#include <metal/led.h>
+
+int main() {
+	struct metal_led *led0_red, *led0_green, *led0_blue;
+    printf("Start Programe\n");
+
+    led0_red = metal_led_get_rgb("LD0", "red");
+	led0_green = metal_led_get_rgb("LD0", "green");
+	led0_blue = metal_led_get_rgb("LD0", "blue");
+
+    // Enable each LED
+    metal_led_enable(led0_red);
+    metal_led_enable(led0_green);
+    metal_led_enable(led0_blue);
+
+    // All Off
+    metal_led_off(led0_red);
+    metal_led_off(led0_green);
+    metal_led_off(led0_blue);
+
+//    metal_led_on(led0_red);
+}
