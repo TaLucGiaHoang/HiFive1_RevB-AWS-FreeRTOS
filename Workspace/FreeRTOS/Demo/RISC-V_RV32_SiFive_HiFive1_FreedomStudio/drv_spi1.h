@@ -72,34 +72,6 @@
 #define gpio0_input_val        (*(volatile uint32_t*)(0x10012000)) // Pin value register
 #define gpio0_input_en         (*(volatile uint32_t*)(0x10012004)) // Pin input enable register
 
-//typedef struct {
-//    volatile uint32_t sckdiv;           /* 0x00 Serial clock divisor register */
-//    volatile uint32_t sckmode;          /* 0x04 Serial clock mode register */
-//    volatile uint32_t reserved0[2];     /* 0x08 ~ 0x0c Reserved  */
-//    volatile uint32_t csid;             /* 0x10 Chip select ID register */
-//    volatile uint32_t csdef;            /* 0x14 Chip select default register */
-//    volatile uint32_t csmode;           /* 0x18 Chip select mode register */
-//    volatile uint32_t reserved1[3];     /* 0x1c ~ 0x24 Reserved  */
-//    volatile uint32_t delay0;           /* 0x28 Delay control 0 register */
-//    volatile uint32_t delay1;           /* 0x2c Delay control 1 register */
-//    volatile uint32_t reserved2[4];     /* 0x30 ~ 0x3c Reserved  */
-//    volatile uint32_t fmt;              /* 0x40 Frame format register */
-//    volatile uint32_t reserved3[1];     /* 0x44 Reserved  */
-//    volatile uint32_t txdata;           /* 0x48 Tx FIFO Data register */
-//    volatile uint32_t rxdata;           /* 0x4c Rx FIFO data register */
-//    volatile uint32_t txmark;           /* 0x50 Tx FIFO watermark register */
-//    volatile uint32_t rxmark;           /* 0x54 Rx FIFO watermark register */
-//    volatile uint32_t reserved4[2];     /* 0x58 ~ 0x5c Reserved  */
-//    volatile uint32_t fctrl;            /* 0x60 SPI flash interface control register */
-//    volatile uint32_t ffmt;             /* 0x64 SPI flash instruction format register */
-//    volatile uint32_t reserved5[2];     /* 0x68 ~ 0x6c Reserved  */
-//    volatile uint32_t ie;               /* 0x70 SPI interrupt enable register */
-//    volatile uint32_t ip;               /* 0x74 SPI interrupt pending register */
-//} SPI_RegDef;
-//#define SPI1_BASE               (volatile uint32_t*)(0x10024000)
-//#define DEV_SPI1              ((SPI_RegDef *)  SPI1_BASE)
-
-
 /* Function declaration */
 #include <string.h>
 void driver_spi1_init(void);
